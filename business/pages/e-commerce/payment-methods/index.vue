@@ -38,6 +38,16 @@
             </div>
           </template>
         </el-table-column>
+        <el-table-column label="Actions" width="160">
+          <template #default="{ row }">
+            <NuxtLink :to="`/e-commerce/payment-methods/${row.id}`" class="text-primary mr-2">Edit</NuxtLink>
+            <el-popconfirm title="Delete this method?" @confirm="() => deleteOne(row)">
+              <template #reference>
+                <el-button type="danger" size="small">Delete</el-button>
+              </template>
+            </el-popconfirm>
+          </template>
+        </el-table-column>
       </el-table>
 
       <div class="mt-3 flex items-center gap-2">
@@ -118,6 +128,14 @@ async function toggleOne(row, val) {
   }
 }
 
+async function deleteOne(row) {
+  try {
+    await service.delete(row.id)
+    await load()
+  } catch (e) {
+    errorMessage.value = e?.data?.detail || e?.message || 'Delete failed'
+  }
+}
 
 onMounted(load)
 </script>

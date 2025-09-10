@@ -4,6 +4,7 @@ from ..models.payment_method_option import PaymentMethodOption
 
 
 class PaymentMethodOptionSerializer(BaseSerializer):
+    # Serializer chuyển đổi giữa model và JSON cho API
     class Meta:
         model = PaymentMethodOption
         fields = [

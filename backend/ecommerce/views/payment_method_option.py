@@ -9,6 +9,7 @@ from ..serializers.payment_method_option import PaymentMethodOptionSerializer
 
 
 class PaymentMethodOptionViewSet(BaseViewSet):
+    # Cho phép mọi người truy cập
     permission_classes = [AllowAny]
     queryset = PaymentMethodOption.objects.all()
     search_map = {
