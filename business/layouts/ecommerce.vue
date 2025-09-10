@@ -41,6 +41,10 @@
                             <Document class="el-icon" />
                             <span>{{ t('Orders') }}</span>
                         </el-menu-item>
+                        <el-menu-item index="/e-commerce/payment-methods">
+                            <IconPayment class="el-icon" />
+                            <span>Payment methods</span>
+                        </el-menu-item>
                         <div class="text-white px-2">
                             <span>Todo: Add more features here.</span>
                         </div>
@@ -63,7 +67,7 @@ import IconEcommerce from '~/assets/icons/e-commerce.svg';
 import IconDashboard from '~/assets/icons/dashboard.svg';
 import IconProduct from '~/assets/icons/product.svg';
 import IconPromotion from '~/assets/icons/promotion.svg';
-import { Document, Folder } from '@element-plus/icons-vue';
+import { Document, Folder, CreditCard as IconPayment } from '@element-plus/icons-vue';
 import { useOauthStore } from '@/stores/oauth';
 
 const { t } = useI18n();

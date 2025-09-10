@@ -8,3 +8,4 @@ from .product import ProductViewSet
 from .promotion import PromotionViewSet
 from .cart import CartViewSet
 from .order import OrderViewSet
+from .payment_method_option import PaymentMethodOptionViewSet

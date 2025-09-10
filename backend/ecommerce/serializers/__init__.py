@@ -1,3 +1,4 @@
+from .payment_method_option import PaymentMethodOptionSerializer
 from .province import ProvinceSerializer
 from .district import DistrictSerializer
 from .ward import WardSerializer

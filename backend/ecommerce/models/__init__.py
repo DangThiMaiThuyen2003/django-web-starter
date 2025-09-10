@@ -1,3 +1,4 @@
+from .payment_method_option import PaymentMethodOption
 from .product_category import ProductCategory
 from .product import Product
 from .product_image import ProductImage

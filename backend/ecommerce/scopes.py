@@ -20,7 +20,9 @@ approvable_scopes = {
     "ecommerce:orders:view": "View all orders",
     "ecommerce:orders:edit": "Edit all orders",
     "ecommerce:bills:view": "View all bills",
-    "ecommerce:bills:edit": "edit all bills"
+    "ecommerce:bills:edit": "edit all bills",
+    "ecommerce:payment-methods:view": "View all payment methods",
+    "ecommerce:payment-methods:edit": "Edit all payment methods",
 }
 
 scopes = {}
