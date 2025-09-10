@@ -2,7 +2,7 @@ import BaseService from './base'
 
 export class PaymentMethodsService extends BaseService {
   get entity() {
-    return '/api/v1/ecommerce/payment-methods'
+    return 'ecommerce/payment-methods'
   }
 
   bulkToggle(ids, is_active) {

@@ -1,5 +1,6 @@
 from rest_framework.decorators import action
 from rest_framework import status, serializers
+from rest_framework.permissions import AllowAny
 from rest_framework.response import Response
 from base.views import BaseViewSet
 from ..models.payment_method_option import PaymentMethodOption
@@ -8,20 +9,14 @@ from ..serializers.payment_method_option import PaymentMethodOptionSerializer
 
 
 class PaymentMethodOptionViewSet(BaseViewSet):
+    permission_classes = [AllowAny]
     queryset = PaymentMethodOption.objects.all()
     search_map = {
         "name": "icontains",
         "description": "icontains",
     }
     serializer_class = PaymentMethodOptionSerializer
-    required_alternate_scopes = {
-        "list": [["ecommerce:payment-methods:view"], ["ecommerce:payment-methods:edit"]],
-        "retrieve": [["ecommerce:payment-methods:view"], ["ecommerce:payment-methods:edit"]],
-        "create": [["ecommerce:payment-methods:edit"]],
-        "update": [["ecommerce:payment-methods:edit"]],
-        "destroy": [["ecommerce:payment-methods:edit"]],
-        "bulk_toggle": [["ecommerce:payment-methods:edit"]],
-    }
+    required_alternate_scopes = {}
 
     def destroy(self, request, *args, **kwargs):
         instance = self.get_object()

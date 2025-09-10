@@ -1,7 +1,11 @@
 <template>
-  <div class="p-4 max-w-2xl">
-      <h2 class="text-xl font-semibold mb-4">Create payment method</h2>
-      <el-form :model="form" label-width="140px">
+  <div class="flex flex-row w-full justify-center pt-20">
+    <div class="w-full max-w-3xl bg-white rounded shadow p-6">
+      <div class="flex items-center justify-between mb-4">
+        <h2 class="text-xl font-semibold">Create payment method</h2>
+        <NuxtLink to="/e-commerce/payment-methods" class="text-primary">Back</NuxtLink>
+      </div>
+      <el-form :model="form" label-width="160px" @submit.prevent="submit">
         <el-form-item label="Name">
           <el-input v-model="form.name" />
         </el-form-item>
@@ -17,12 +21,15 @@
         <el-form-item label="Active">
           <el-switch v-model="form.is_active" />
         </el-form-item>
-        <div class="flex gap-2">
-          <el-button type="primary" @click="submit">Create</el-button>
-          <NuxtLink to="/e-commerce/payment-methods" class="el-button">Back</NuxtLink>
-        </div>
+        <el-form-item>
+          <div class="flex gap-2">
+            <el-button type="primary" native-type="submit" :loading="loading" :disabled="!form.name || !form.method_type">Create</el-button>
+            <NuxtLink to="/e-commerce/payment-methods" class="el-button">Cancel</NuxtLink>
+          </div>
+        </el-form-item>
       </el-form>
     </div>
+  </div>
   <el-notification v-if="errorMessage" type="error" :title="'Error'" :message="errorMessage" />
   <el-notification v-if="successMessage" type="success" :title="'Success'" :message="successMessage" />
 </template>
@@ -32,16 +39,20 @@ import service from '@/services/payment_methods'
 definePageMeta({ layout: 'ecommerce' })
 const router = useRouter()
 const form = reactive({ name: '', method_type: 'offline', description: '', is_active: true })
+const loading = ref(false)
 const successMessage = ref('')
 const errorMessage = ref('')
 
 async function submit() {
   try {
+    loading.value = true
     await service.create({ ...form })
     successMessage.value = 'Created successfully'
     router.push('/e-commerce/payment-methods')
   } catch (e) {
     errorMessage.value = e?.data?.detail || e?.message || 'Create failed'
+  } finally {
+    loading.value = false
   }
 }
 </script>
